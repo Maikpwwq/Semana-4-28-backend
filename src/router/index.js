@@ -1,55 +1,86 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Portafolio from '../views/Portafolio.vue';
+import store from '../store';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
+    name: 'Portafolio',
+    component: Portafolio,
+    meta: {
+      Administrador: true,
+      Vendedor: true,
+      Almacenero: true,
+      public: true,
+    },
+  },
+  {
+    path: '/login',
+    name: 'Lognin',
+    component:() => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    meta: {
+      public: true,
+    },
   },
   {
     path: '/dashboard',
-    name: 'DashBoard',
-    component: () => import(/* webpackChunkName: "Home" */ '../views/DashBoard.vue'),
-    meta:{
-      requiresAuth: true 
-    }
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/services',
-    name: 'Services',
-    component: () => import(/* webpackChunkName: "servicios" */ '../views/Servicios.vue')
-  },
-]
+    name: 'Dashboard',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashBoard.vue'),
+    meta: {
+      auth: true,
+    },
+    children: [
+      {
+        path: 'articulos',
+        name: 'Articulos',
+        component: () => import(/* webpackChunkName: "articulos" */ '../views/Articulos.vue'),
+        meta: {
+          auth: true,
+        },
+      },
+      {
+        path: 'categorias',
+        name: 'Categorias',
+        component: () => import(/* webpackChunkName: "categoria" */ '../views/Categorias.vue'),
+        meta: {
+          auth: true,
+        },
+      },
+      {
+        path: 'usuarios',
+        name: 'Usuarios',    
+        component: () => import(/* webpackChunkName: "usuarios" */ '../views/Usuarios.vue'),
+        meta: {
+          auth: true,
+          administrador: true,
+        },
+      }
+    ]
+  }
+];
 
 const router = new VueRouter({
-    mode: "history",
-    base: process.env.BASE_URL,
-    routes
-})
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+});
 
-router.beforeEach((to, from, next) => {
-  if(to.matched.some( record => record.meta.requiresAuth)){
-    if(localStorage.getItem('jwt') === null){
-      next ({
-        path: '/'
-      })
+router.beforeEach((to, from, next) =>{
+    if (to.matched.some(record => record.meta.public)){
+      next();
+    } else if (to.matched.some(record => record.meta.private)) {
+      if(store.state.user){ 
+        // if && store.state.user.rol === 'Administrador' o 'Vendedor'
+        next()  
+      } else {
+        next({ name: 'Login' })
+      }
     } else {
       next()
-    }  
-  } else {
-    next()
-  }
-})
+    }
+});
 
-export default router
+export default router;

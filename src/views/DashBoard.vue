@@ -1,17 +1,32 @@
 <template>
-  <div class="dashboard">
-    <the-dash-board></the-dash-board>
-  </div>
+  <v-app id="inspire">
+    <v-main class="grey lighten-2">
+      <v-container>        
+        <!-- -->
+        <v-row>    
+          <v-alert type="success">
+          </v-alert>      
+          <v-col>
+            <autenticado-dashboard>              
+            </autenticado-dashboard>
+          </v-col>          
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
+
 </template>
 
 <script>
-// @ is an alias to /src
-import TheDashBoard from '../components/auth/TheDashBoard.vue'
+import AutenticadoDashboard from '../components/AutenticadoDashboard.vue';
 
 export default {
-  name: 'DashBoard',
+  name: 'Dashboard',
   components: {
-    TheDashBoard
-  }
+        AutenticadoDashboard
+  },
+  data: () => ({
+      
+  }),
 }
 </script>

@@ -1,22 +1,15 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-//import store from "./store";
-import "bootstrap/dist/css/bootstrap.css";
-import axios from 'axios'
+import Vue from 'vue'
+import App from './App.vue'
+import vuetify from './plugins/vuetify';
+import router from './router'
+//import './plugins/axios'
+import store from './store'
 
 Vue.config.productionTip = false
 
-const base = axios.create({
-  // baseURL: 'https://glacial-everglades-74306.herokuapp.com'
-  //  http://localhost:3000/api/auth/signin
-  baseURL: 'localhost:3000'
-});
-
-Vue.prototype.$http = base;
-
-new Vue({
+new Vue({  
   router,
-  //store,
+  store,
+  vuetify,
   render: h => h(App)
 }).$mount('#app')
