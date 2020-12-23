@@ -8,7 +8,7 @@
 import DataTableUsuario from '@/components/DataTableUsuario'
 
 export default {
-    name: 'Usuario',
+    name: 'Usuarios',
     components: {
         DataTableUsuario,
     }

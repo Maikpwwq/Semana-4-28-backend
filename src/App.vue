@@ -1,17 +1,14 @@
 <template>
-  <v-app id="app">
-  
+  <v-app id="app">  
       <router-view/>
   </v-app>
 </template>
 
 <script>
-import AutenticadoDashboard from './components/AutenticadoDashboard.vue';
 
 export default {
     name: 'App',
-    components: {
-        AutenticadoDashboard
+    components: {      
     },
     data: () => ({
       

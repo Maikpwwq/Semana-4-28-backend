@@ -30,7 +30,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              Nuevo Item
+              Agregar Nueva Categoria
             </v-btn>
           </template>
           <v-card>
@@ -138,7 +138,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+//import axios from 'axios';
 
   export default {
     name: 'DataTableCategoria',
@@ -148,10 +148,10 @@ import axios from 'axios';
       cargando: true,
       headers: [
         {
-          text: 'Categorias',
+          text: 'Nombre',
           align: 'start',
-          sortable: True,
-          value: 'categorias',
+          sortable: true,
+          value: 'nombre',
         },
         {
           text: 'Descripción', value: 'descripcion',
@@ -205,7 +205,7 @@ import axios from 'axios';
       },
 
       list(){
-        axios.get('http://localhost:3000/api/categoria/list')
+        this.axios.get('/api/categoria/list')
           .then( response  => {
             this.categorias = response.data;
             this.cargando = false
@@ -235,7 +235,7 @@ import axios from 'axios';
         // this.categorias.splice(this.editedIndex, 1) PARA LISTAS
         if (this.editedItem.estado === 1 ){
           // Desactivar una categoria
-          axios.put('http://localhost:3000/api/categoria/deactivate', {
+          this.axios.put('/api/categoria/deactivate', {
             id: this.editedItem.id,           
           })
           .then(response => {            
@@ -248,7 +248,7 @@ import axios from 'axios';
           // Object.assign(this.categorias[this.editedIndex], this.editedItem)
         } else {
           // Activar una categoria
-          axios.put('http://localhost:3000/api/categoria/activate', {
+          this.axios.put('/api/categoria/activate', {
             id: this.editedItem.id,
           })
           .then(response => {            
@@ -282,8 +282,8 @@ import axios from 'axios';
       
       save () {
         if (this.editedIndex > -1) {
-          // Editar un objeto
-          axios.put('http://localhost:3000/api/categoria/update', {
+          // Editar una categoria
+          this.axios.put('/api/categoria/update', {
             id: this.editedItem.id, 
             nombre: this.editedItem.nombre, 
             descripcion: this.editedItem.descripcion,
@@ -298,7 +298,7 @@ import axios from 'axios';
           // Object.assign(this.categorias[this.editedIndex], this.editedItem)
         } else {
           // Agregar un objeto
-          axios.post('http://localhost:3000/api/categoria/add', {
+          this.axios.post('/api/categoria/add', {
             estado: 1, 
             nombre: this.editedItem.nombre, 
             descripcion: this.editedItem.descripcion,

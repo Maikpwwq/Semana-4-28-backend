@@ -30,7 +30,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              Agregar Nuevo Usuario
+              Agregar Nuevo Articulo
             </v-btn>
           </template>
           <v-card>
@@ -192,7 +192,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+//import axios from 'axios';
 
   export default {
     name: 'DataTableArticulo',
@@ -205,7 +205,7 @@ import axios from 'axios';
         {
           text: 'Nombre',
           align: 'start',
-          sortable: True,
+          sortable: true,
           value: 'nombre',
         },
         { text: 'Descripción', value: 'descripcion'},
@@ -225,8 +225,8 @@ import axios from 'axios';
         codigo: '',
         estado: '',
         categoria: {
-           id = 0,
-           nombre = '' 
+           id : 0,
+           nombre : '' 
         },
       },
       defaultItem: {
@@ -236,8 +236,8 @@ import axios from 'axios';
         codigo: '',
         estado: '',
         categoria: {
-           id = 0,
-           nombre = '' 
+           id : 0,
+           nombre : '' 
         },
       },
     }),
@@ -274,9 +274,9 @@ import axios from 'axios';
       },
 
       list(){
-        axios.get('http://localhost:3000/api/articulo/list')
+        this.axios.get('/api/articulo/list')
           .then( response  => {
-            this.usuarios = response.data;
+            this.articulos = response.data;
             this.cargando = false
           })
           .catch( error => {
@@ -300,8 +300,8 @@ import axios from 'axios';
 
       deleteItemConfirm () {
         if (this.editedItem.estado === 1 ){
-          // Desactivar una categoria
-          axios.put('http://localhost:3000/api/articulo/deactivate', {
+          // Desactivar un Articulo
+          this.axios.put('/api/articulo/deactivate', {
             id: this.editedItem.id,           
           })
           .then(response => {            
@@ -313,7 +313,7 @@ import axios from 'axios';
           })          
         } else {
           // Activar una categoria
-          axios.put('http://localhost:3000/api/articulo/activate', {
+          this.axios.put('/api/articulo/activate', {
             id: this.editedItem.id,
           })
           .then(response => {            
@@ -347,7 +347,7 @@ import axios from 'axios';
       save () {
         if (this.editedIndex > -1) {
           // Editar un articulo
-          axios.put('http://localhost:3000/api/articulo/update', {
+          this.axios.put('/api/articulo/update', {
             "estado": 1, 
             "nombre": this.editedItem.nombre, 
             "descripcion": this.editedItem.descripcion,
@@ -364,7 +364,7 @@ import axios from 'axios';
           // Object.assign(this.categorias[this.editedIndex], this.editedItem)
         } else {
           // Agregar un articulo
-          axios.post('http://localhost:3000/api/articulo/add', {
+          this.axios.post('/api/articulo/add', {
             "estado": 1, 
             "nombre": this.editedItem.nombre, 
             "descripcion": this.editedItem.descripcion,

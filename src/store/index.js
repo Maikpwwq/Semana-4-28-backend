@@ -5,7 +5,7 @@ import router from '../router'
 
 Vue.use(Vuex)
 
-exports default new Vuex.Store({
+export default new Vuex.Store({
     state: {
         token: null,
         user: null,
@@ -25,7 +25,7 @@ exports default new Vuex.Store({
             localStorage.setItem('token', token);
         },
         autoLogin({commit}){
-            const token = localStorage.gatItem('token', token);
+            const token = localStorage.getItem('token', token);
             if(token){
                 commit("setToken", token);
                 commit("setUsuario", jwtdecode(token));
@@ -37,7 +37,7 @@ exports default new Vuex.Store({
             commit("setToken", null);
             commit("setUsuario", null);
             localStorage.removeItem('token');
-            router.push({name: 'Dashboard'})
+            router.push({name: 'Portafolio'})
         }
     }
 });

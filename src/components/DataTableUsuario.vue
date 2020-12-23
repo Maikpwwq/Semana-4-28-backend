@@ -163,7 +163,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+//import axios from 'axios';
 
   export default {
     name: 'DataTableUsuario',
@@ -175,7 +175,7 @@ import axios from 'axios';
         {
           text: 'Nombre',
           align: 'start',
-          sortable: True,
+          sortable: true,
           value: 'nombre',
         },
         {
@@ -234,7 +234,7 @@ import axios from 'axios';
       },
 
       list(){
-        axios.get('http://localhost:3000/api/usuario/list')
+        this.axios.get('/api/usuario/list')
           .then( response  => {
             this.usuarios = response.data;
             this.cargando = false
@@ -260,7 +260,7 @@ import axios from 'axios';
       deleteItemConfirm () {
         if (this.editedItem.estado === 1 ){
           // Desactivar un usuario
-          axios.put('http://localhost:3000/api/usuario/deactivate', {
+          this.axios.put('/api/usuario/deactivate', {
             id: this.editedItem.id,           
           })
           .then(response => {            
@@ -272,7 +272,7 @@ import axios from 'axios';
           })
         } else {
           // Activar un usuario
-          axios.put('http://localhost:3000/api/categoria/activate', {
+          this.axios.put('/api/categoria/activate', {
             id: this.editedItem.id,
           })
           .then(response => {            
@@ -286,8 +286,7 @@ import axios from 'axios';
         this.closeDelete()
       },
 
-      close () {
-        
+      close () {        
         this.dialog = false
         this.$nextTick(() => {
           this.editedItem = Object.assign({}, this.defaultItem)
@@ -306,7 +305,7 @@ import axios from 'axios';
       save () {
         if (this.editedIndex > -1) {
           // Editar un usuario
-          axios.put('http://localhost:3000/api/usuario/update', {
+          this.axios.put('/api/usuario/update', {
             id: this.editedItem.id, 
             nombre: this.editedItem.nombre, 
             descripcion: this.editedItem.descripcion,
@@ -320,7 +319,7 @@ import axios from 'axios';
           })
         } else {
           // Agregar un usuario
-          axios.post('http://localhost:3000/api/usuario/add', {
+          this.axios.post('/api/usuario/add', {
             estado: 1, 
             nombre: this.editedItem.nombre, 
             descripcion: this.editedItem.descripcion,

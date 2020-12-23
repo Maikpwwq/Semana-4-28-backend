@@ -19,7 +19,7 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'Lognin',
+    name: 'Login',
     component:() => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
       public: true,

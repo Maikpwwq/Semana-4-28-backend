@@ -6,7 +6,7 @@
 import DataTableArticulo from '@/components/DataTableArticulo'
 
 export default {
-    name: 'Articulo',
+    name: 'Articulos',
     components: {
         DataTableArticulo,
     }
