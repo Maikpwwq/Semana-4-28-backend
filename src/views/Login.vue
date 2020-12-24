@@ -1,6 +1,7 @@
 <template>
   <div class="componente mt-5">
-        <the-login>
+    <the-menu></the-menu>
+      <the-login>
             <template v-slot:titulo>
               <h2>Formulario Login</h2>
             </template>
@@ -14,12 +15,14 @@
 
 <script>
 // email prueba@gmail.com password micontraseña
-import TheLogin from '@/components/auth/TheLogin.vue'
+import TheLogin from '@/components/auth/TheLogin.vue';
+import TheMenu from '../components/TheMenu.vue';
 
 export default {
     name: 'Login',
     components: {
-        TheLogin
+        TheLogin,
+        TheMenu
     }    
 }
 </script>

@@ -1,8 +1,10 @@
 <template>
       <v-layout>
         <v-flex class='mb-3'>
-          <the-menu></the-menu>
-          <v-row align="center" align-content="center" style="heigt:70vh">
+          <v-row 
+            align="center" 
+            align-content="center" 
+            style="heigt:70vh">
             <v-col>
               <v-card class="pa-5 col-md-8">
                 <v-form 
@@ -17,7 +19,7 @@
                   <v-card-text></v-card-text>                  
 
                   <v-text-field
-                    v-model="email"
+                    v-model="login.email"
                     label="E-mail"
                     required
                   ></v-text-field>
@@ -28,36 +30,35 @@
                     label="Password"
                     required
                   ></v-text-field>               
-
-                  <v-btn
-                    :disabled="!valid"
+                  
+                  <!-- :disabled="!valid" -->
+                  <v-btn                    
                     color="success"
                     class="mr-4 w-75"
-                    @click="validate"
+                    @click="loginUser"
                   >
                     Iniciar Sesión
                   </v-btn>                                  
 
                 </v-form>
               </v-card>
-            </v-col>
+              <pre>
+                {{login}}
+              </pre>  
+            </v-col>            
           </v-row>
-        </v-flex>
-        <pre>
-              {{login}}
-        </pre>        
+        </v-flex>              
       </v-layout>        
 </template>
 
 <script>
-import TheMenu from '../TheMenu'
 import axios from 'axios';
 import swal from 'sweetalert';
 
 export default {
     name: 'TheLogin',
     components: {
-        TheMenu,
+
     },
     data(){
         return{
@@ -68,20 +69,21 @@ export default {
         }
     },
     beforeCreate(){
-      this.$store.dispacth('autoLogin') 
-      // ? this.$router.push({path: '/dashboard'}) : false;
+      this.$store.dispatch('autoLogin')       
     },
     methods:{
         // Maneja el evento de hacer click en el boton inicio
         async loginUser(){
-            axios.post('http://localhost:3000/api/usuario/login', this.login)
-            .then( response =>{
+            console.log(`nuestra Respuesta  ${this.email}`)
+            axios
+              .post('/api/usuario/login', this.login)
+              .then( response =>{
                 return response.data
             })
             .then( data =>{
                 this.$store.dispatch('guardarToken', data.tokenReturn);                
                 this.$router.push({name:'Dashboard'});
-                swal("Login exitoso!", "Los datos son correctos, bienvenido!", "success");
+                swal("Login exitoso!", "Se ha accedido en forma correcta, bienvenido!", "success");
                 console.log(data)
             })
             .catch( error =>{

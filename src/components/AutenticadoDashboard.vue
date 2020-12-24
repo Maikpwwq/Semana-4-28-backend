@@ -42,7 +42,7 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Aplicativo</v-toolbar-title>
 
       <v-spacer></v-spacer>      
 
@@ -50,7 +50,7 @@
         icon
         color="error"
         class="mr-4"
-        @click.prevent="logOut()"
+        @click.prevent="logOut"
       > 
         <v-icon> mdi-logout </v-icon> 
         <span> Cerrar Sesion </span> 
@@ -190,15 +190,23 @@ import VueJwtDecode from 'vue-jwt-decode';
 
   export default {
     name: 'AutenticadoDashboard',
+    components: {
 
+    },
     data: () => ({
       drawer: null,
       items: [
         { title: 'Portafolio', icon: 'mdi-home', ruta: 'Portafolio'},
       ],
       adminItems: [
-        /*['Management', 'mdi-account-multiple-outline'],
-        ['Settings', 'mdi-cog-outline'],*/
+        /*
+        ['Management', 'mdi-account-multiple-outline'],
+        ['Settings', 'mdi-cog-outline', ],
+        ['Create', 'mdi-plus-outline'],
+        ['Read', 'mdi-file-outline'],
+        ['Update', 'mdi-update'],
+        ['Delete', 'mdi-delete']
+        */
         { title: 'Categorias', icon: 'mdi-table', ruta: 'Categoria'},
         { title: 'Articulos', icon: 'mdi-file', ruta: 'Articulos'},
       ],
@@ -206,11 +214,7 @@ import VueJwtDecode from 'vue-jwt-decode';
           email: "",
           nombre: ""  
       }],
-      permisosItems: [
-        /*['Create', 'mdi-plus-outline'],
-        ['Read', 'mdi-file-outline'],
-        ['Update', 'mdi-update'],
-        ['Delete', 'mdi-delete'],*/
+      permisosItems: [        
         { title: 'Ususario', icon: 'mdi-account', ruta: 'Usuarios'}
       ],
     }),    
@@ -219,9 +223,9 @@ import VueJwtDecode from 'vue-jwt-decode';
         // Metodo cerrarSesion
         logOut(){
             this.$store.dispatch('salir');          
-            // localStorage.removeItem('jwt');
+            localStorage.removeItem('jwt');
             // localStorage.removeItem('user');
-            // this.$router.push('/')
+            this.$router.push('/')
         },
         getUserDetails(){
           let token = localStorage.getItem('jwt');

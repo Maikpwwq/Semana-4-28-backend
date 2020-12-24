@@ -10,10 +10,7 @@ const routes = [
     path: '/',
     name: 'Portafolio',
     component: Portafolio,
-    meta: {
-      Administrador: true,
-      Vendedor: true,
-      Almacenero: true,
+    meta: {      
       public: true,
     },
   },
@@ -30,7 +27,7 @@ const routes = [
     name: 'Dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashBoard.vue'),
     meta: {
-      auth: true,
+      auth: true,      
     },
     children: [
       {
@@ -39,14 +36,17 @@ const routes = [
         component: () => import(/* webpackChunkName: "articulos" */ '../views/Articulos.vue'),
         meta: {
           auth: true,
+          Almacenero: true,
+          //vendedor: true,
         },
       },
       {
         path: 'categorias',
         name: 'Categorias',
-        component: () => import(/* webpackChunkName: "categoria" */ '../views/Categorias.vue'),
+        component: () => import(/* webpackChunkName: "categorias" */ '../views/Categorias.vue'),
         meta: {
           auth: true,
+          Almacenero: true,
         },
       },
       {
@@ -55,7 +55,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "usuarios" */ '../views/Usuarios.vue'),
         meta: {
           auth: true,
-          administrador: true,
+          Administrador: true,
         },
       }
     ]
@@ -73,8 +73,8 @@ router.beforeEach((to, from, next) =>{
       next();
     } else if (to.matched.some(record => record.meta.private)) {
       if(store.state.user){ 
-        // if && store.state.user.rol === 'Administrador' o 'Vendedor'
-        next()  
+        //if (store.state.user.rol === 'Administrador' || 'Vendedor' || 'Almacenero'){}
+          next()                  
       } else {
         next({ name: 'Login' })
       }
