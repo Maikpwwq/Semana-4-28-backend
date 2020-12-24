@@ -4,12 +4,19 @@
           <v-row 
             align="center" 
             align-content="center" 
-            style="heigt:70vh">
-            <v-col>
-              <v-card class="pa-5 col-md-8">
+            style="heigt:70vh"
+            justify="center"
+          >
+              <v-card 
+                class="pa-5 col-md-8"
+                height="600"
+                width="250"
+              >
                 <v-form 
                   ref="form" 
                   lazy-validation 
+                  v-model="valid"
+                  justify="center"
                   class="text-center border border-primary p-5"
                   style="margin-top:70px;height:auto;padding-top:100px !important;"
                   @submit.prevent="loginUser" >   
@@ -19,20 +26,24 @@
                   <v-card-text></v-card-text>                  
 
                   <v-text-field
-                    v-model="login.email"
+                    v-model="body.email"
                     label="E-mail"
+                    :rules="emailRules"
+                    outlined
                     required
                   ></v-text-field>
 
                   <v-text-field
-                    v-model="login.password"
-                    :counter="10"
+                    v-model="body.password"
+                    counter
                     label="Password"
+                    :rules="passwordRules"
+                    outlined
                     required
                   ></v-text-field>               
-                  
-                  <!-- :disabled="!valid" -->
-                  <v-btn                    
+                                    
+                  <v-btn  
+                    :disabled="!valid"                  
                     color="success"
                     class="mr-4 w-75"
                     @click="loginUser"
@@ -41,11 +52,12 @@
                   </v-btn>                                  
 
                 </v-form>
-              </v-card>
-              <pre>
-                {{login}}
-              </pre>  
-            </v-col>            
+                <!-- 
+                  <pre>
+                  {{body}}
+                  </pre> 
+                -->
+              </v-card>                
           </v-row>
         </v-flex>              
       </v-layout>        
@@ -60,9 +72,18 @@ export default {
     components: {
 
     },
+    valid: true,
+    passwordRules: [
+      v => !!v || 'El campo Password es requerido',
+      v => (v && v.length >= 10 ) || 'Password debe contener almenos 8 caracteres',
+    ],    
+    emailRules: [
+      v => !!v || 'El campo E-mail es requerido',
+      v => /.+@.+\..+/.test(v) || 'el E-mail debe ser valido',
+    ],
     data(){
         return{
-            login: {
+            body: {
                 email: "",
                 password: ""
             }
@@ -73,17 +94,18 @@ export default {
     },
     methods:{
         // Maneja el evento de hacer click en el boton inicio
-        async loginUser(){
-            console.log(`nuestra Respuesta  ${this.email}`)
+        loginUser(){
+            console.log(`nuestra Respuesta  ${this.body}`);
+            this.$refs.form.validate();
             axios
-              .post('/api/usuario/login', this.login)
+              .post('/api/usuario/login', this.body)
               .then( response =>{
                 return response.data
             })
             .then( data =>{
                 this.$store.dispatch('guardarToken', data.tokenReturn);                
                 this.$router.push({name:'Dashboard'});
-                swal("Login exitoso!", "Se ha accedido en forma correcta, bienvenido!", "success");
+                swal("Login exitoso!", "Se ha accedido en forma correcta, bienvenido!", "success");                
                 console.log(data)
             })
             .catch( error =>{
