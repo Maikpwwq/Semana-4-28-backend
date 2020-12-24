@@ -1,0 +1,38 @@
+<template>
+    <div id="description" class="container SecDescripcion">
+        <div class="mt-3 ">
+            <h2 class="text-center font-weight-normal pr-5 mr-5">Purificación agua</h2>
+          </div>
+        <div class="mt-3 pt-6">
+            <h4 class="text-justify font-weight-normal pr-5 mr-5">Infraestructuras para plantas de tratamiento de aguas residuales PTAR y Estaciones depuradoras de aguas residuales (EDARS’s)</h4>
+        </div>
+
+          <div class="row">
+              <div class="col-auto">
+                  <h3 class="text-justify text-dark font-weight-light">
+                  <br><br>
+                     <em> Nuestros servicios incluyen Las plantas de tratamiento de aguas potables, plantas de tratamiento de aguas residuales PTAR y Estaciones depuradoras de aguas residuales (EDARS’s), incluida la biomasa en suspensión, y los reactores de biopelícula híbrido, reactores biológicos de membrana (MBR), los procesos de coagulación-floculación-sedimentación. <br><br>
+
+Ofrecemos contenedores de uso municipal, en fibra de vidrio, poseen un diseño compacto, robusto e innovador, ideal para el tratamiento aguas municipales, son plantas compactas que incluyen procesos de aireación, floculación, decantación, filtración, desinfección entre otros, todos estos dentro de sistemas contenerizados de fácil transporte e instalación. Todos nuestros sistemas de agua potable y plantas de tratamiento de agua incluyen 100% la garantía de fábrica.
+</em>
+                  </h3>
+              </div>
+          </div>
+    </div>
+</template>
+<script>
+export default {
+    name: 'SecDescripcion'
+}
+</script>
+<style scoped>
+#description{
+    padding-top: 120px !important;
+}
+
+h2{
+    text-align: right !important;
+    margin: -4rem 0 auto !important;
+    color: #00ACC1;
+}
+</style>
