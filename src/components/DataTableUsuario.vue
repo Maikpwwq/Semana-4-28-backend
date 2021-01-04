@@ -1,7 +1,5 @@
 <template>
-  <div id="dataTableUsuario">
-    <v-app>
-        <v-data-table
+        <v-data-table id="dataTableUsuario"
         :headers="headers"
         :items="usuarios"
         sort-by="id"
@@ -178,8 +176,6 @@
           {{ $data.usuarios }}
         </pre>
       </v-data-table>
-    </v-app>
-  </div>
 </template>
 
 <script>
@@ -272,11 +268,11 @@ import axios from 'axios';
       // Se necesitará Token, trae los datos de la BD para guardar el resultado en la variable variable usuarios: [],
       list(){
         axios
-          .get('/api/usuario/list'),{
+          .get('/api/usuario/list',{
             headers: {
               token: this.$store.state.token,
             }
-          }
+          })
           .then( response  => {
             this.usuarios = response.data;
             this.cargando = false

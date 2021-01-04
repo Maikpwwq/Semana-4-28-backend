@@ -23,6 +23,14 @@ const routes = [
     },
   },
   {
+    path: '/signup',
+    name: 'SignUp',
+    component:() => import(/* webpackChunkName: "signup" */ '../views/SignUp.vue'),
+    meta: {
+      public: true,
+    },
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashBoard.vue'),
@@ -71,15 +79,21 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) =>{
     if (to.matched.some(record => record.meta.public)){
       next();
-    } else if (to.matched.some(record => record.meta.private)) {
+    } else if (to.matched.some(record => record.meta.auth)) {
       if(store.state.user){ 
-        //if (store.state.user.rol === 'Administrador' || 'Vendedor' || 'Almacenero'){}
-          next()                  
+        /* if (store.state.user.rol === 'Administrador' || 'Vendedor' || 'Almacenero'){
+          
+        } else {
+          return from.status(403).send({
+            message: 'Usuario no autorizado'
+          });
+        }*/          
+        next();        
       } else {
-        next({ name: 'Login' })
+        next({ name: 'Login' });
       }
     } else {
-      next()
+      next();
     }
 });
 

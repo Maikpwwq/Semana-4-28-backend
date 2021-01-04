@@ -2,58 +2,45 @@
   <v-app id="inspire">
 
     <v-system-bar app dark>
-      <v-spacer></v-spacer>
-        <v-list>
-          <v-list-title v-text="'Bienvenido!'"></v-list-title>
-          
-          <v-list-item
+          <v-btn 
+            value="recent"
             :to="{name:'Portafolio'}"
-            exact>            
-            <v-list-item-icon>
-              <v-icon v-text="'mdi-user'"></v-icon>
-            </v-list-item-icon>
+            exact
+            >
+            <span>Bienvenido!</span>
+          </v-btn>
+      <v-spacer></v-spacer>
+          
 
-            <v-list-item-content>
-              <v-list-item-title v-text="'Nombre:'"></v-list-item-title>
-              {{user.nombre}}
-            </v-list-item-content>            
+          <v-btn value="favorites">
+            <v-icon v-text="'mdi-account-circle'"></v-icon>
+            <span>Nombre: {{user.nombre}}</span>                        
+          </v-btn>
 
-            <v-list-item-icon>
-              <v-icon v-text="'mdi-email'"></v-icon>
-            </v-list-item-icon>
+          <v-btn value="nearby">
+            <v-icon v-text="'mdi-email'"></v-icon>
+            <span>Email: {{user.email}}</span>              
+          </v-btn>
 
-            <v-list-item-content>
-              <v-list-item-title v-text="'Email:'"></v-list-item-title>
-              {{user.email}}
-            </v-list-item-content>            
-
-          </v-list-item>
-        </v-list>             
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-
-      
     </v-system-bar>
 
     <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer">
 
-      <v-toolbar-title>Aplicativo</v-toolbar-title>
+      </v-app-bar-nav-icon>
+
+      <v-toolbar-title>Aplicativo de administración CRUD</v-toolbar-title>
 
       <v-spacer></v-spacer>      
 
       <v-btn
         icon
         color="error"
-        class="mr-4"
+        class="mr-12"
         @click.prevent="logOut"
       > 
         <v-icon> mdi-logout </v-icon> 
-        <span> Cerrar Sesion </span> 
+        <span> Cerrar Sesión </span> 
       </v-btn>
 
     </v-app-bar>
@@ -68,19 +55,20 @@
         class="mx-auto"
         width="300"
       >
-        <v-list 
-          v-if="logueado" 
+        <v-list                     
           nav>
-          <!-- Pagina de Inicio -->
+          <!-- Pagina de Inicio  v-if="auth"-->
           <v-list-item
-            :to="{name:'Portafolio'}"
+            v-for="([title, icon, ruta], index) in homeItems"
+            :key="index"
+            :to="{name:ruta}"             
             exact>            
             <v-list-item-icon>
-              <v-icon v-text="'mdi-home'"></v-icon>
+              <v-icon v-text="icon"></v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title v-text="'Portafolio'"></v-list-item-title>
+              <v-list-item-title v-text="title"></v-list-item-title>
             </v-list-item-content>            
 
           </v-list-item>
@@ -113,11 +101,11 @@
                 :to="{name:ruta}"             
                 link
               >
-                <v-list-item-title v-text="title"></v-list-item-title>
-
                 <v-list-item-icon>
                   <v-icon v-text="icon"></v-icon>
                 </v-list-item-icon>
+                <v-list-item-title v-text="title"></v-list-item-title>
+          
               </v-list-item>
             </v-list-group>
 
@@ -152,32 +140,8 @@
     </v-navigation-drawer>
 
     <v-main class="grey lighten-2">
-      <v-container>
-        <!-- 
-          <v-row>
-          <template v-for="n in 4">
-            <v-col
-              :key="n"
-              class="mt-2"
-              cols="12"
-            >
-              <strong>Category {{ n }}</strong>
-            </v-col>
-
-            <v-col
-              v-for="j in 6"
-              :key="`${n}${j}`"
-              cols="6"
-              md="2"
-            >
-              <v-sheet height="150"></v-sheet>
-            </v-col>
-          </template>
-        </v-row>
-         -->
-        <v-row>          
+      <v-container>        
           <router-view/>
-        </v-row>
       </v-container>
     </v-main>
   </v-app>
@@ -194,53 +158,51 @@ import VueJwtDecode from 'vue-jwt-decode';
 
     },
     data: () => ({
-      drawer: null,
-      items: [
-        { title: 'Portafolio', icon: 'mdi-home', ruta: 'Portafolio'},
+      drawer: null,      
+      user: [{
+          email: "",
+          nombre: ""  
+      }],
+      auth: false,
+      homeItems: [
+        ['Portafolio', 'mdi-home', 'Portafolio'], 
       ],
-      adminItems: [
-        /*
+      /*
         ['Management', 'mdi-account-multiple-outline'],
         ['Settings', 'mdi-cog-outline', ],
         ['Create', 'mdi-plus-outline'],
         ['Read', 'mdi-file-outline'],
         ['Update', 'mdi-update'],
         ['Delete', 'mdi-delete']
-        */
-        { title: 'Categorias', icon: 'mdi-table', ruta: 'Categoria'},
-        { title: 'Articulos', icon: 'mdi-file', ruta: 'Articulos'},
+      */
+      adminItems: [
+        /* title: icon: ruta: */        
+        [ 'Categorias', 'mdi-table', 'Categorias'],
+        [ 'Articulos', 'mdi-file', 'Articulos'],
       ],
-      user: [{
-          email: "",
-          nombre: ""  
-      }],
       permisosItems: [        
-        { title: 'Ususario', icon: 'mdi-account', ruta: 'Usuarios'}
+        [ 'Usuarios', 'mdi-account', 'Usuarios']
       ],
     }),    
-    
+    created(){        
+        this.$store.dispatch('autoLogin');
+        this.getUserDetails();
+    }, 
     methods:{        
         // Metodo cerrarSesion
         logOut(){
             this.$store.dispatch('salir');          
-            localStorage.removeItem('jwt');
-            // localStorage.removeItem('user');
             this.$router.push('/')
         },
         getUserDetails(){
-          let token = localStorage.getItem('jwt');
+          let token = localStorage.getItem('token');
+          this.auth = localStorage.getItem('auth');
           let user = VueJwtDecode.decode(token);
-          console.log(user);
           if(token){
             this.user= user
           }
         }
-    }, 
-    
-    created(){
-        //this.getUserDetails();
-        this.$store.dispatch('autoLogin')
-    }          
+    },                
   }
 </script>
 

@@ -11,7 +11,7 @@
                 class="pa-5 col-md-8"
                 height="600"
                 width="250"
-              >                
+              >
                 <v-form 
                   ref="form" 
                   lazy-validation 
@@ -28,6 +28,13 @@
                   <v-card-text>
                     <slot name="subtitulo"></slot> 
                   </v-card-text>                  
+
+                    <v-text-field
+                    v-model="body.nombre"
+                    label="Nombre"
+                    outlined
+                    required
+                  ></v-text-field>                
 
                   <v-text-field
                     v-model="body.email"
@@ -50,9 +57,9 @@
                     :disabled="!valid"                  
                     color="success"
                     class="mr-4 w-75"
-                    @click="loginUser"
+                    @click="registrarUser"
                   >
-                    Iniciar Sesión
+                    Siguiente
                   </v-btn>                                  
 
                 </v-form>
@@ -88,6 +95,7 @@ export default {
     data(){
         return{
             body: {
+                nombre: "",
                 email: "",
                 password: ""
             }
@@ -97,26 +105,26 @@ export default {
       this.$store.dispatch('autoLogin')       
     },
     methods:{
-        // Maneja el evento de hacer click en el boton de inicio de sesion
-        loginUser(){
+        // Maneja el evento de hacer click en el boton siguiente
+        registrarUser(){
+            console.log(`nuestra Respuesta  ${this.body}`);
             this.$refs.form.validate();
             axios
-              .post('/api/usuario/login', this.body)
+              .post('/api/usuario/signup', this.body)
               .then( response =>{
                 return response.data
-              })
-              .then( data =>{
+            })
+            .then( data =>{
+                this.$store.dispatch('guardarToken', data.tokenReturn);                
+                this.$router.push({name:'Dashboard'});
+                swal("Login exitoso!", "Se ha registrado el usuario en forma correcta, bienvenido!", "success");                
                 console.log(data)
-                this.$store.dispatch('guardarToken', data.tokenReturn);
-                this.$store.dispatch('guardarAuth', data.auth);                
-                swal("Login exitoso!", "Se ha accedido en forma correcta, bienvenido!", "success");  
-                this.$router.push({name:'Dashboard'});                                            
-              })
-              .catch( error =>{
+            })
+            .catch( error =>{
                   swal("Oops!", "Algo salió mal!", "error"); // warning
                   console.log(error)
                   return error
-              })              
+            })              
         }
     }
 }

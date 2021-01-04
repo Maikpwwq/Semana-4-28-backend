@@ -11,6 +11,8 @@ const base = axios.create({
   // baseURL: 'localhost:3000'
 });
 
+// await this.$http.post()
+
 Vue.prototype.$http = base;
 */
 

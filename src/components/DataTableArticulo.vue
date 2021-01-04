@@ -1,7 +1,5 @@
 <template>
- <div id="dataTableArticulo">
-    <v-app>
-      <v-data-table
+      <v-data-table id="dataTableArticulo"
       :headers="headers"
       :items="articulos"
       sort-by="id"
@@ -191,8 +189,6 @@
         {{ $data.usuarios }}
       </pre>
     </v-data-table>
-   </v-app>
-  </div>
 </template>
 
 <script>
