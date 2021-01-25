@@ -14,12 +14,12 @@
 
           <v-btn value="favorites">
             <v-icon v-text="'mdi-account-circle'"></v-icon>
-            <span>Nombre: {{user.nombre}}</span>                        
+            <span>Nombre: {{$user.nombre}}</span>                        
           </v-btn>
 
           <v-btn value="nearby">
             <v-icon v-text="'mdi-email'"></v-icon>
-            <span>Email: {{user.email}}</span>              
+            <span>Email: {{$user.email}}</span>              
           </v-btn>
 
     </v-system-bar>
@@ -78,19 +78,12 @@
             :value="true"
             prepend-icon="mdi-account-circle"
           >
-            <template v-slot:activator>
-              <v-list-item-title>Dashboard</v-list-item-title>
-            </template>
-            <!-- Administrador de Categorias y Articulos -->
-
-            <v-list-group
-              :value="true"
-              no-action
-              sub-group
-            >
+          <!-- Administrador de Categorias y Articulos -->            
               <template v-slot:activator>
                 <v-list-item-content>
-                  <v-list-item-title>Administrar</v-list-item-title>
+                  <v-list-item-title>
+                    Administrar
+                  </v-list-item-title>
                 </v-list-item-content>
               </template>
 
@@ -104,20 +97,23 @@
                 <v-list-item-icon>
                   <v-icon v-text="icon"></v-icon>
                 </v-list-item-icon>
-                <v-list-item-title v-text="title"></v-list-item-title>
+                <v-list-item-title v-text="title">                  
+                </v-list-item-title>
           
               </v-list-item>
-            </v-list-group>
+          </v-list-group>
 
             <!-- Administrador de Usuarios -->
-            <v-list-group 
+          <v-list-group 
               v-if="this.$store.state.user.rol === 'Administrador'"
-              no-action
-              sub-group
+              prepend-icon="mdi-account-circle"              
+              :value="true"              
             >
               <template v-slot:activator>
                 <v-list-item-content>
-                  <v-list-item-title>Permisos</v-list-item-title>
+                  <v-list-item-title>
+                    Permisos
+                  </v-list-item-title>
                 </v-list-item-content>
               </template>
 
@@ -126,15 +122,14 @@
                 :key="index"
                 :to="{name:ruta}"             
                 link
-              >
-                <v-list-item-title v-text="title"></v-list-item-title>
-
+              >                
                 <v-list-item-icon>
                   <v-icon v-text="icon"></v-icon>
                 </v-list-item-icon>
+                <v-list-item-title v-text="title">                  
+                </v-list-item-title>
               </v-list-item>
             </v-list-group>
-          </v-list-group>
         </v-list>
       </v-card>
     </v-navigation-drawer>

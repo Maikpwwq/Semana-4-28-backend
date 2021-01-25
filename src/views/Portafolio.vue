@@ -1,7 +1,11 @@
 <template>
-  <div class="portafolio">
-    <ThePortafolio msg="Bienvenido Equipo 28"/>
-  </div>
+  <v-app class="portafolio">
+    <v-main class="grey lighten-2">
+      <v-container>        
+        <ThePortafolio msg="Bienvenido Equipo 28"/>
+      </v-container>
+    </v-main>
+  </v-app>    
 </template>
 
 <script>

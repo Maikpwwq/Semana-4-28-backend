@@ -89,9 +89,11 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
+
+            <!-- Toggle switch activar - desactivar -->
             <v-dialog v-model="dialogDelete" max-width="500px">
               <v-card>
-                <v-card-title class="headline">Deseas eliminar este Categoria?</v-card-title>
+                <v-card-title class="headline">Desea desactivar esta Categoría?</v-card-title>
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" text @click="closeDelete">Cancelar</v-btn>
