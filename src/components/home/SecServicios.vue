@@ -7,7 +7,7 @@
           <div class="row justify-content-center">
             <div class="mt-5 pt-5 col-sm-6 ">
               <div class="card bg-light border border-primary shadow" v-for="(categoria) in categorias" :key="categoria.id">
-                <img src="../../../public/img/cenefaMarketing.jpg" class="card-img-top" alt="imagen restaurante">
+                <img src="../../../public/img/cenefaMarketing.jpg" class="card-img-top" alt="background servicios">
                 <div class="card-body" >
                   <h5 class="card-title text-dark">{{categoria.nombre}}</h5>
                   <p class="card-text text-dark">{{categoria.descripcion}}
