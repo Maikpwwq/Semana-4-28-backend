@@ -1,6 +1,10 @@
 {
-  "name": "TratamientoRegeneracionAgua",
+  "name": "TratamientoRegeneracionAguas",
   "version": "0.1.0",
+  "description": "Mediante un sitio web registrar el requerimiento del usuario en Tecnologías y procesos de regeneración de las aguas.",
+  "keywords": [
+    "Marketplace, aguas, residuales, regeneradas, reutilizar, planta, tratamiento, potable, desinfección, digestión, lodos, limpieza, instalación, mantenimiento, filtración"
+  ],
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -18,6 +22,7 @@
     "vue": "^2.6.11",
     "vue-jwt-decode": "^0.1.0",
     "vue-router": "^3.4.9",
+    "vuelidate": "^0.7.6",
     "vuetify": "^2.2.11",
     "vuex": "^3.6.0"
   },
@@ -57,5 +62,10 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maikpwwq/Semana-4-28-frontend.git"
+  },
+  "homepage": "https://frontend-tratamiento-aguas.herokuapp.com/"
 }

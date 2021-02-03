@@ -1,18 +1,18 @@
 <template>
     <div id="description" class="container SecDescripcion">
         <div class="mt-3 ">
-            <h2 class="text-center font-weight-normal pr-5 mr-5">Regeneración de aguas</h2>
+            <h2 class="text-center font-weight-normal pr-5 mr-5">NAGA |Regeneración de aguas</h2>
           </div>
         <div class="mt-3 pt-6">
             <h4 class="text-justify font-weight-normal pr-5 mr-5">
-                Infraestructura en Plantas de tratamiento de aguas residuales (PTAR) y Estaciones depuradoras de aguas residuales (EDARS).
+                Infraestructura en: Plantas de tratamiento de aguas residuales (PTAR), Plantas de tratamiento de residuos industriales líquidos (RILES) y Estaciones depuradoras de aguas residuales (EDARS).
             </h4>
         </div>
 
           <div class="row">
               <div class="col-auto">
                   <h3 class="text-justify text-dark font-weight-light">
-                    <br><br>
+                    <br>
                     <em> 
                         Somos una empresa dedicada a la producción y comercialización de sistemas físico-químicos para el análisis, tratamiento y reutilización de efluentes residuales en procesos industriales. 
                         <br>
