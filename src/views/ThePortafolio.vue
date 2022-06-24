@@ -13,7 +13,7 @@
 import ThePortafolio from '@/components/ThePortafolio.vue';
 
 export default {
-  name: 'Portafolio',
+  name: 'ThePortafolio',
   components: {
     ThePortafolio
   }

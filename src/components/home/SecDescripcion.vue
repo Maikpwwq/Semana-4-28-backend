@@ -1,7 +1,7 @@
 <template>
     <div id="description" class="container SecDescripcion">
         <div class="mt-3 ">
-            <h2 class="text-center font-weight-normal pr-5 mr-5">NAGA |Regeneración de aguas</h2>
+            <h2 class="text-center font-weight-normal pr-5 mr-5">NAGA | Regeneración de aguas</h2>
           </div>
         <div class="mt-3 pt-6">
             <h4 class="text-justify font-weight-normal pr-5 mr-5">

@@ -6,7 +6,7 @@
 import DataTableCategoria from '@/components/DataTableCategoria'
 
 export default {
-    name: 'Categorias',
+    name: 'TablaCategorias',
     components: {
         DataTableCategoria,
     }

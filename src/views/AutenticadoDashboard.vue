@@ -7,7 +7,7 @@
 import AutenticadoDashboard from '../components/AutenticadoDashboard.vue';
 
 export default {
-  name: 'Dashboard',
+  name: 'AutenticadoDashboard',
   components: {
         AutenticadoDashboard
   },

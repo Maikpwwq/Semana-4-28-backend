@@ -193,6 +193,7 @@ import axios from 'axios';
       dialogDelete (val) {
         val || this.closeDelete()
       },
+      deep: true
     },
 
     created () {

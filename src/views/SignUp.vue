@@ -23,7 +23,7 @@ import TheRegistro from '@/components/auth/TheRegistro.vue';
 import TheMenu from '../components/TheMenu.vue';
 
 export default {
-    name: 'signUp',
+    name: 'SignUp',
     components: {
         TheRegistro,
         TheMenu

@@ -1,7 +1,9 @@
 "use strict";
 
-import Vue from 'vue';
-import axios from "axios";
+// import Vue from 'vue';
+// import { createApp } from 'vue'
+import axios from "axios"
+// const app = createApp({})
 
 // Full config:  https://github.com/axios/axios#request-config
 // Agregamos la URL base de nuestra API
@@ -58,6 +60,6 @@ Plugin.install = function(Vue, options) {
   });
 };
 
-Vue.use(Plugin)
+// app.use(Plugin);
 
 export default Plugin;

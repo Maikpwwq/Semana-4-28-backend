@@ -74,6 +74,7 @@ export default {
          axios.get('/api/categoria/list', {
          })
          .then(response => {
+           console.log('categorias', response) 
            this.categorias = response.data;
            this.cargando = false;
          })

@@ -13,12 +13,12 @@
           
 
           <v-btn value="favorites">
-            <v-icon v-text="'mdi-account-circle'"></v-icon>
+            <v-icon>mdi-account-circle'</v-icon>
             <span>Nombre: {{$user.nombre}}</span>                        
           </v-btn>
 
           <v-btn value="nearby">
-            <v-icon v-text="'mdi-email'"></v-icon>
+            <v-icon>mdi-email</v-icon>
             <span>Email: {{$user.email}}</span>              
           </v-btn>
 
@@ -64,11 +64,11 @@
             :to="{name:ruta}"             
             exact>            
             <v-list-item-icon>
-              <v-icon v-text="icon"></v-icon>
+              <v-icon>{{icon}}</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title v-text="title"></v-list-item-title>
+              <v-list-item-title>{{title}}</v-list-item-title>
             </v-list-item-content>            
 
           </v-list-item>
@@ -95,9 +95,10 @@
                 link
               >
                 <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
+                  <v-icon>{{icon}}</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title v-text="title">                  
+                <v-list-item-title>
+                {{title}}
                 </v-list-item-title>
           
               </v-list-item>
@@ -124,9 +125,10 @@
                 link
               >                
                 <v-list-item-icon>
-                  <v-icon v-text="icon"></v-icon>
+                  <v-icon>{{icon}}</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title v-text="title">                  
+                <v-list-item-title>
+                {{title}}                  
                 </v-list-item-title>
               </v-list-item>
             </v-list-group>
