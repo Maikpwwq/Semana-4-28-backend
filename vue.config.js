@@ -6,16 +6,19 @@ const webpackConfig = require("./webpack.config.js");
 module.exports = {
  transpileDependencies: ["vuetify"],
  configureWebpack: webpackConfig,
-
- // output.path
- publicPath: '', 
- outputDir: './dist',
-
+ // publicPath: '/',
+ outputDir: 'dist',
+ assetsDir: './assets/',
+ //  css: {
+ //    extract: true,
+ //    modules: false,
+ //    sourceMap: false,
+ //  }
  runtimeCompiler: true,
 
-//  css: {
-//    extract: true,
-//    modules: false,
-//    sourceMap: false,
-//  }
+ pluginOptions: {
+   vuetify: {
+			// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+		}
+ }
 };

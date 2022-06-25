@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import DataTableCategoria from '@/components/DataTableCategoria'
+import DataTableCategoria from '../components/DataTableCategoria.vue'
 
 export default {
     name: 'TablaCategorias',

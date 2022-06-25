@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import DataTableUsuario from '@/components/DataTableUsuario'
+import DataTableUsuario from '../components/DataTableUsuario.vue'
 
 export default {
     name: 'TablaUsuarios',

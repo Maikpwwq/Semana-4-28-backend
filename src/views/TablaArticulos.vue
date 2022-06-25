@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import DataTableArticulo from '@/components/DataTableArticulo'
+import DataTableArticulo from '../components/DataTableArticulo.vue'
 
 export default {
     name: 'TablaArticulos',
