@@ -2,15 +2,15 @@
   <v-container class="d-flex justify-content-between align-content-end" width="100%">
     <v-row class="text-center">
       <header-nav></header-nav>
-      <v-col class="mb-8">        
+      <v-col class="mb-8">
         <div class="container pt-5 mt-5">
           <sec-banner></sec-banner>
           <sec-descripcion></sec-descripcion>
           <sec-servicios></sec-servicios>
-          <sec-casos-exito></sec-casos-exito>               
+          <sec-casos-exito></sec-casos-exito>
         </div>
       </v-col>
-      <sec-formulario></sec-formulario>     
+      <sec-formulario></sec-formulario>
       <sec-footer></sec-footer>
     </v-row>
   </v-container>
@@ -28,15 +28,15 @@ import SecFooter from './home/SecFooter'
 export default {
   name: 'TheProtafolio',
   data: () => ({
-      icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
+    icons: [
+      'mdi-facebook',
+      'mdi-twitter',
+      'mdi-linkedin',
+      'mdi-instagram',
+    ],
   }),
-  methods:{
-      
+  methods: {
+
   },
   components: {
     HeaderNav,

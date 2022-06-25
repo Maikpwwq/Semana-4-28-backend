@@ -1,6 +1,6 @@
 <template>
   <v-app class="portafolio">
-    <v-main class="grey lighten-2">
+    <v-main tag="portafolio" class="grey lighten-2">
       <v-container>
         <ThePortafolio msg="Bienvenido Equipo 28" />
       </v-container>

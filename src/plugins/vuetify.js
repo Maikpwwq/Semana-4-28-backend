@@ -4,7 +4,7 @@ import "vuetify/styles";
 
 // Vuetify
 import { createVuetify } from "vuetify";
-import es from 'vuetify/lib/locale/es';
+// import es from 'vuetify/lib/locale/es';
 
 export default createVuetify({
   theme: {
@@ -25,7 +25,7 @@ export default createVuetify({
     },
   },
   lang: {
-    locales: { es },
+    // locales: { es },
     current: "es",
   },
 });
