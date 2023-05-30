@@ -9,7 +9,7 @@ import './plugins/axios'
 
 loadFonts()
 
-createApp(App).use(store)
+createApp(App)
   .use(router)
   .use(store)
   .use(vuetify)
