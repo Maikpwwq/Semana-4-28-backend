@@ -2,18 +2,18 @@
   <v-app id="inspire">
 
     <v-system-bar app dark>
-      <v-btn value="recent" :to="{ name: 'Portafolio' }" exact>
+      <v-btn model-value="recent" :to="{ name: 'Portafolio' }" exact>
         <span>Bienvenido!</span>
       </v-btn>
       <v-spacer></v-spacer>
 
 
-      <v-btn value="favorites">
+      <v-btn model-value="favorites">
         <v-icon>mdi-account-circle'</v-icon>
         <span>Nombre: {{ $user.nombre }}</span>
       </v-btn>
 
-      <v-btn value="nearby">
+      <v-btn model-value="nearby">
         <v-icon>mdi-email</v-icon>
         <span>Email: {{ $user.email }}</span>
       </v-btn>
@@ -36,7 +36,7 @@
 
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" fixed temporary>
+    <v-navigation-drawer v-model="drawer" position="fixed" temporary>
       <!-- Menu desplegable -->
       <v-card class="mx-auto" width="300">
         <v-list nav>

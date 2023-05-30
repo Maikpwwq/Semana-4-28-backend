@@ -7,8 +7,8 @@
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
+          <template v-slot:activator="{ props }">
+            <v-btn color="primary" dark class="mb-2" v-bind="props">
               Agregar Nuevo Artículo
             </v-btn>
           </template>
@@ -35,7 +35,7 @@
                   </v-col>
 
                   <v-col cols="12" sm="12" md="12">
-                    <v-select v-model="categoria" label="Categoría" :items="categorias" item-text="nombre"
+                    <v-select v-model="categoria" label="Categoría" :items="categorias" item-title="nombre"
                       item-value="id" return-object></v-select>
                   </v-col>
 
@@ -76,10 +76,10 @@
       </v-toolbar>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
-      <v-icon small class="mr-2" @click="editItem(item)">
+      <v-icon size="small" class="mr-2" @click="editItem(item)">
         mdi-pencil
       </v-icon>
-      <v-icon medium @click="deleteItem(item)">
+      <v-icon size="medium" @click="deleteItem(item)">
         <template v-if="item.estado">
           mdi-toggle-switch
         </template>

@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <v-main tag="main">
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
@@ -25,14 +25,16 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
 #nav {
   padding: 30px;
+
   a {
     font-weight: bold;
     color: #2c3e50;
+
     &.router-link-exact-active {
       color: #42b983;
     }
   }
-}
-</style>
+}</style>

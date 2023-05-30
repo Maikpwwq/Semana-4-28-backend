@@ -1,5 +1,5 @@
 <template>
-  <v-footer dark padless absolute width="100%">
+  <v-footer dark padless position="absolute" width="100%">
     <v-card class="d-flex justify-center align-content-center mb-6" width="100%" flat tile>
 
       <v-card-title class="py-2 white--text text-center">

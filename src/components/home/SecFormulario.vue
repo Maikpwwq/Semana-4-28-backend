@@ -18,9 +18,9 @@
           </p>
           <form>
             <v-text-field v-model="name" :error-messages="nameErrors" :counter="10" label="Nombre" required
-              @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
+              @update:model-value="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
             <v-text-field v-model="email" :error-messages="emailErrors" label="E-mail" required
-              @input="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
+              @update:model-value="$v.email.$touch()" @blur="$v.email.$touch()"></v-text-field>
             <v-select v-model="select" :items="items" :error-messages="selectErrors" label="Servicio" required
               @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
             <v-checkbox v-model="checkbox" :error-messages="checkboxErrors" label="Estás de acuerdo?" required

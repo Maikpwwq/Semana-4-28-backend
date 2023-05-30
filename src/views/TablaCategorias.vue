@@ -1,7 +1,3 @@
-<template>
-    <data-table-categoria></data-table-categoria>
-</template>
-
 <script>
 import DataTableCategoria from '../components/DataTableCategoria.vue'
 
@@ -12,3 +8,7 @@ export default {
     }
 }
 </script>
+
+<template>
+    <data-table-categoria></data-table-categoria>
+</template>

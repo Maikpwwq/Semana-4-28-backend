@@ -1,14 +1,16 @@
 //import Vue from 'vue';
 // import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
-import ThePortafolio from "../views/ThePortafolio.vue";
+// import NagaPortafolio from "../views/NagaPortafolio.vue";
 import store from "../store/index";
 
 const routes = [
   {
     path: "/",
-    name: "ThePortafolio",
-    component: ThePortafolio,
+    name: "NagaPortafolio",
+    // component: NagaPortafolio,
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/NagaPortafolio.vue"),
     meta: {
       public: true,
     },
